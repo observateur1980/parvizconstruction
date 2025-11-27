@@ -1,0 +1,444 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <style>
+    /*our services section pozma bunu*/
+        .team-4 .team-image img {
+            border-radius: 7%;
+            margin-bottom: 20px;
+        }
+
+
+        .testimonial-content p{
+            font-family: Roboto, sans-serif;
+            font-size: 16px!important;
+        }
+        .testimonial-content a{
+            font-style: italic;
+        }
+
+
+    </style>
+
+    <section>
+
+        <div class="img_sld " id="img2">
+            <img src="{% static 'images/slider/mario_vertical.jpg' %}" alt="Snow" style="width:100%">
+            <a href="#" class="btn1 button  mt-15">
+                <span>Call 800 334 83-00</span>
+            </a>
+
+            <a href="#"
+               class="btn2 button mt-15">
+                <span>REQUEST A CONSULTATION</span>
+            </a>
+        </div>
+
+    </section>
+
+    <section>
+
+        <div class="img_sld ">
+            <img id="img1" src="{% static 'images/slider/mario.jpg' %}" alt="Snow" style="width:100%">
+        </div>
+
+    </section>
+
+
+
+
+
+    <section class="page-section-ptb blue-bg" style="padding-bottom: 40px; padding-top: 40px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="features-14">
+                        <span aria-hidden="true" class="icon-bulb"></span>
+                        <h4 class="mb-15 text-white">INSURED</h4>
+                        <p class="text-white">Up to $1 000,000.00 With Ferrante Insurance Inc</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="features-14">
+                        <span aria-hidden="true" class="icon-like"></span>
+                        <h4 class="mb-15 text-white">LICENSED</h4>
+                        <p class="text-white">License #1140458 + BONDED = NO STRESS</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="features-14">
+                        <span aria-hidden="true" class="icon-user"></span>
+                        <h4 class="mb-15 text-white">Workers Comp Insurance</h4>
+                        <p class="text-white">Safety doesn't happen by accident</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--=================================
+    action-box -->
+
+
+    <section class="team-4-main white-bg page-section-ptb">
+        <div class="container" style="padding-bottom: 120px; padding-top: 100px">
+            <div class="row">
+                <div class="section-title-2 text-center">
+                    <h1 class="text-blue">Your One-Stop Solution for Complete Home Transformations</h1>
+                    <div class="title-line"></div>
+
+                </div>
+            </div>
+            <div class="row service_row_margin_bottom">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block"
+                                 src="{% static 'images/services/designbuild.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+
+                            <h5><a href="#"> Design Build </a></h5>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block"
+                                 src="{% static 'images/services/newconstruction.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+                            <h5><a href="#"> New Construction </a></h5>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block"
+                                 src="{% static 'images/services/kitchen-remodel.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+                            <h5><a href="#">Kitchen Remodeling</a></h5>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block"
+                                 src="{% static 'images/services/bathroom-remodel.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+                            <h5><a href="#">Bathroom Remodeling</a></h5>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block"
+                                 src="{% static 'images/services/schildorf garage makeover.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+                            <h5><a href="#">Garage Remodeling</a></h5>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block"
+                                 src="{% static 'images/services/totalhouse.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+                            <h5><a href="#">Home Remodeling</a></h5>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block"
+                                 src="{% static 'images/services/adu.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+                            <h5><a href="#">Home Additions</a></h5>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="team-4 text-center">
+                        <div class="team-image">
+                            <a href="#">
+                            <img class="img-responsive center-block" src="{% static 'images/services/planspermits.jpg' %}"
+                                 alt="">
+                            </a>
+                        </div>
+                        <div class="team-name">
+                            <h5><a href="#">Plans & Permits</a></h5>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+    <!--=================================
+    custom-content  -->
+
+
+
+    <section class="action-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <h2 class="text-white">Free Design Consultation</h2>
+                    <h3 class="text-white">Contact us today for a free estimate</h3>
+                </div>
+                <div class="col-lg-4 col-md-4 text-right action-box-button">
+                    <a href="#" class="button button-white mt-15 btn-lg">
+                        <span>REQUEST YOUR FREE CONSULTATION</span>
+                        <i class="fa fa-hand-o-right"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="blog page-section-ptb" style="background-color: #eeeeee">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-lg-12">
+
+                    <!-- ================================================ -->
+
+                    <!-- ================================================ -->
+                    <div class="blog-entry post-2">
+                        <div class="blog-entry-html-video audio-video">
+                            <video style="width:100%;height:100%;" id="player1"
+                                   poster="{% static 'video/santaclara house.jpg' %}" controls="controls" preload="none">
+                                <source type="video/mp4" src="{% static 'video/santaclara full house.mp4' %}"/>
+
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-30">
+                        <a href="{% url 'home:gallery' %}" class="button">
+                            <span>See what we've done</span>
+                            <i class="fa fa-hand-o-right"></i>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+<!--=================================
+testimonial  -->
+
+<section class="testimonial-5 white-bg page-section-ptb">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+         <div class="section-title-3 text-center">
+            <h1>Real People, Real Reviews</h1>
+            <p style="font-size: large">Trusted by Homeowners Like You</p>
+         </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="testimonial-block">
+                <div class="testimonial-avtar">
+                   <img src="{% static 'images/arjun.jpeg' %}" alt="" style="border-radius: 50%;">
+                </div>
+                <div class="testimonial-content">
+                  <h4>Arjun T. &nbsp;
+                  <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                  </h4>
+
+                  <p>5 stars for design and great support to help me out! I just love it, nice and clean! Greetings from Sweden!</p>
+
+                    <span> <a href="#"> click for original review </a>  </span>
+                </div>
+              </div>
+          </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="testimonial-block">
+                <div class="testimonial-avtar">
+                   <img src="{% static 'images/toshiko.jpeg' %}" alt="" style="border-radius: 50%;">
+                </div>
+                <div class="testimonial-content">
+                  <h4>Toshiko T. &nbsp;
+                  <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                  </h4>
+                  <p>5 stars for design and great support to help me out! I just love it, nice and clean! Greetings from Sweden!</p>
+
+                    <span> <a href="#"> click for original review </a>  </span>
+                </div>
+              </div>
+          </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="testimonial-block">
+                <div class="testimonial-avtar">
+                   <img src="{% static 'images/toshiko.jpeg' %}" alt="" style="border-radius: 50%;">
+                </div>
+                <div class="testimonial-content">
+                  <h4>Toshiko T. &nbsp;
+                  <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                  </h4>
+                  <p>5 stars for design and great support to help me out! I just love it, nice and clean! Greetings from Sweden!</p>
+
+                    <span> <a href="#"> click for original review </a>  </span>
+                </div>
+              </div>
+          </div>
+    </div>
+    <div class="row mt-50">
+      <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="testimonial-block">
+                <div class="testimonial-avtar">
+                   <img src="{% static 'images/arjun.jpeg' %}" alt="" style="border-radius: 50%;">
+                </div>
+                <div class="testimonial-content">
+                  <h4>Arjun T. &nbsp;
+                  <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                  </h4>
+                  <p>5 stars for design and great support to help me out! I just love it, nice and clean! Greetings from Sweden!</p>
+
+                    <span> <a href="#"> click for original review </a>  </span>
+                </div>
+              </div>
+          </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="testimonial-block">
+                <div class="testimonial-avtar">
+                   <img src="{% static 'images/toshiko.jpeg' %}" alt="" style="border-radius: 50%;">
+                </div>
+                <div class="testimonial-content">
+                  <h4>Toshiko T. &nbsp;
+                  <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                  </h4>
+                  <p>5 stars for design and great support to help me out! I just love it, nice and clean! Greetings from Sweden!</p>
+
+                    <span> <a href="#"> click for original review </a>  </span>
+                </div>
+              </div>
+          </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="testimonial-block">
+                <div class="testimonial-avtar">
+                   <img src="{% static 'images/toshiko.jpeg' %}" alt="" style="border-radius: 50%;">
+                </div>
+                <div class="testimonial-content">
+                  <h4>Toshiko T. &nbsp;
+                  <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                        <img src="{% static 'icons/yelp_star.png' %}" alt="" width="16" height="16">
+                  </h4>
+                  <p>5 stars for design and great support to help me out! I just love it, nice and clean! Greetings from Sweden!</p>
+
+                    <span> <a href="#"> click for original review </a>  </span>
+                </div>
+              </div>
+          </div>
+    </div>
+  </div>
+</section>
+
+
+<!--=================================
+testimonial  -->
+
+ <section class="custom-content-7 bg-14 page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 text-center">
+                    <h2 class="mb-30" style="color: grey">See why homeowners trust us.</h2>
+
+                    <a class="button button-black" target="_blank"
+                       href="#"><span> Explore stories from our happy clients. </span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

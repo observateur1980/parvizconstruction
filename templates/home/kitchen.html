@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="{%static 'css/lightgallery/css/lightgallery.css' %}" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+}
+
+
+
+.row_mylightgallery {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+
+</style>
+
+<!--=================================
+ our-clients-->
+
+<section class="our-clients-2 white-bg page-section-ptb" style="margin-top: 115px">
+  <div class="container">
+    <div class="row">
+       <div class="col-lg-12 col-md-12">
+        <div class="section-title-1 text-center">
+          <h1 class="text-blue">Kitchen photos from our Gallery</h1>
+          <div class="title-line"></div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Photo Grid -->
+            <div id="mylightgallery" class="row_mylightgallery" >
+
+{#                Colum1 #}
+          <div class="column">
+
+                <div class="item" data-src="{% static 'images/projects/sj95124/2.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/2 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+                <div class="item" data-src="{% static 'images/projects/sj95124/7.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/7 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+              <div class="item" data-src="{% static 'images/projects/sj95124/12.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/12 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+              <div class="item" data-src="{% static 'images/projects/sj95124/13.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/13 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+
+
+
+
+          </div>
+{#                Colum2 #}
+          <div class="column">
+
+                <div class="item" data-src="{% static 'images/projects/sj95124/5.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/5 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+              <div class="item" data-src="{% static 'images/projects/sj95124/14.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/14 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+              <div class="item" data-src="{% static 'images/projects/sj95124/8.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/8 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+              <div class="item" data-src="{% static 'images/projects/sj95124/10.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/10 thumb.jpg'%}" style="width:100%">
+                     </a>
+                </div>
+
+
+          </div>
+
+
+
+{#                Colum3 #}
+          <div class="column">
+            <div class="item" data-src="{% static 'images/projects/sj95124/3.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/3 thumb.jpg'%}" style="width:100%">
+                     </a>
+            </div>
+            <div class="item" data-src="{% static 'images/projects/sj95124/1.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/1 thumb.jpg'%}" style="width:100%">
+                     </a>
+            </div>
+            <div class="item" data-src="{% static 'images/projects/sj95124/9.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/9 thumb.jpg'%}" style="width:100%">
+                     </a>
+            </div>
+              <div class="item" data-src="{% static 'images/projects/sj95124/11.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/11 thumb.jpg'%}" style="width:100%">
+                     </a>
+            </div>
+
+          </div>
+
+
+
+
+{#                Colum4 #}
+          <div class="column">
+
+              <div class="item" data-src="{% static 'images/projects/sj95124/6.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/6 thumb.jpg'%}" style="width:100%">
+                     </a>
+            </div>
+
+              <div class="item" data-src="{% static 'images/projects/sj95124/4.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/4 thumb.jpg'%}" style="width:100%">
+                     </a>
+              </div>
+              <div class="item" data-src="{% static 'images/projects/sj95124/15.jpg'%}">
+                     <a href="">
+                        <img src="{% static 'images/projects/sj95124/15 thumb.jpg'%}" style="width:100%">
+                     </a>
+              </div>
+
+
+
+          </div>
+
+
+
+
+
+
+          </div>
+  </div>
+</section>
+
+<!--=================================
+ our-clients-->
+
+
+     <section>
+						<div>
+							<div class="container">
+
+
+
+                                <div>
+                                    <a href="#" class="btn btn-default" style="margin-bottom: 5px ">KITCHEN REMODELING</a>
+                                    <a href="#" class="btn btn-default" style="margin-bottom: 5px ">BATHROOM REMODELING</a>
+                                    <a href="#" class=" btn btn-default" style="margin-bottom: 5px ">GARAGE REMODELING </a>
+                                    <a href="#" class=" btn btn-default" style="margin-bottom: 5px ">CABINETS</a>
+                                    <a href="#" class="btn btn-default" style="margin-bottom: 5px ">WALL PANELS</a>
+                                    <a href="#" class=" btn btn-default" style="margin-bottom: 5px ">WALL REPAIR</a>
+
+                                </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+    </section>
+
+<section class="custom-content-7 bg-14 page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 text-center">
+
+
+                    <a class="button button-black" target="_blank"
+                       href="#"><span> Copyright Notice </span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+<!-- Picture lightbox for modal sliding -->
+<script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+<script>
+
+lightGallery(document.getElementById('mylightgallery'), {
+    selector: '.item',
+    download: false,
+});
+
+</script>
+<!-- ENDS Here Picture lightbox for modal sliding -->
+
+
+{% endblock %}
