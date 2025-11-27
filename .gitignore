@@ -2,7 +2,7 @@ static/video/
 geoip/
 .AppleDouble
 .LSOverride
-
+static/images/projects
 # Don't ignore .gitignore itself!
 #.gitignore
 

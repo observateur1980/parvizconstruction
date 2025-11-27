@@ -350,3 +350,37 @@ class Sunshade(FormView):
         context = self.get_context_data(**kwargs)
         context['form'] = form
         return self.render_to_response(context)
+
+
+
+from django.http import HttpResponse
+from django.contrib.gis.geoip2 import GeoIP2
+
+
+
+
+def get_client_ip(request):
+    """Get real client IP even if behind proxy."""
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(",")[0].strip()
+    else:
+        ip = request.META.get("REMOTE_ADDR")
+    return ip
+
+def geoip_test(request):
+    """Show detected IP + country for debugging."""
+    ip = get_client_ip(request)
+    g = GeoIP2()
+
+    try:
+        country_data = g.country(ip)
+        country = country_data.get("country_code")
+    except Exception as e:
+        country = f"ERROR: {e}"
+
+    return HttpResponse(f"""
+        <h2>GeoIP Test</h2>
+        <p><strong>Your IP:</strong> {ip}</p>
+        <p><strong>Detected Country:</strong> {country}</p>
+    """)

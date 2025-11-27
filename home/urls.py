@@ -11,6 +11,7 @@ urlpatterns = [
     path('gallery', views.Gallery.as_view(), name='gallery'),
     path('video', views.Video.as_view(), name='video'),
     path('kitchen', views.Kitchen.as_view(), name='kitchen'),
+    path("geoip-test/", views.geoip_test, name="geoip_test"),
 
 
     path('getquote', views.GetQuote.as_view(), name='getquote'),
