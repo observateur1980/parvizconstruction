@@ -25,8 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'django_recaptcha',
-
-    'django_forbid.apps.ForbidConfig', #bu olkeleri block etmek uchundur
+    'account',
+    'django_forbid',
 
 ]
 
@@ -117,6 +117,10 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'smtpforwebpages@gmail.com'
 EMAIL_HOST_PASSWORD = 'qercfgriuwhlulte'
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

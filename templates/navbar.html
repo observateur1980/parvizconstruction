@@ -112,7 +112,7 @@
 <div class="icon-bar hidden-xs">
 
   <a href="#"><i class="fa fa-phone">&nbsp; +1 650 770 5303</i></a>
-  <a href="#"><i class="fa fa-envelope">&nbsp; Contact us</i></a>
+  <a href="{% url 'home:create_lead' %}"><i class="fa fa-envelope">&nbsp; Contact us</i></a>
 
 </div>
 
@@ -166,7 +166,7 @@
             <li><a href="{% url 'home:project' %}">Projects</a>
             </li>
 
-            <li><a href="#" class="req-bar-on-menu btn btn-default hidden-xs">REQUEST A CONSULTATION</a></li>
+            <li><a href="{% url 'home:create_lead' %}" class="req-bar-on-menu btn btn-default hidden-xs">REQUEST A CONSULTATION</a></li>
 
         </ul>
        </div>

@@ -1,14 +1,23 @@
-from django.contrib.sites import requests
-from django.shortcuts import render
-from django.views.generic import TemplateView, FormView
-from home.forms import ContactForm
+from django.views.generic import TemplateView
+
+from django.http import HttpResponse
+from django.contrib.gis.geoip2 import GeoIP2
+
+from .forms import LeadForm
+from django.shortcuts import render, redirect
+from django.core.mail import EmailMessage
+from django.contrib import messages
 from django.conf import settings
-from django.core.mail import send_mail
+import smtplib
 
 
 # Create your views here.
 class Home(TemplateView):
     template_name = 'home/home.html'
+
+
+class Video(TemplateView):
+    template_name = 'home/video.html'
 
 
 class Gallery(TemplateView):
@@ -19,344 +28,99 @@ class Project(TemplateView):
     template_name = 'home/project.html'
 
 
-class Video(TemplateView):
-    template_name = 'home/video.html'
+class Designbuild(TemplateView):
+    template_name = 'home/designbuild.html'
+
+
+class Newconstruction(TemplateView):
+    template_name = 'home/newconstruction.html'
+
 
 class Kitchen(TemplateView):
     template_name = 'home/kitchen.html'
 
-class GetQuote(TemplateView):
-    template_name = 'home/getquote.html'
+
+class Bathroom(TemplateView):
+    template_name = 'home/bathroom.html'
 
 
-class Contact(FormView):
-    template_name = 'home/contact.html'
-    success_url = 'success_sent'
-    form_class = ContactForm
+class Garage(TemplateView):
+    template_name = 'home/garage.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(Contact, self).get_context_data(*args, **kwargs)
-        return context
 
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+class Homeremodel(TemplateView):
+    template_name = 'home/homeremodel.html'
 
-        if form.is_valid():
-            return self.form_valid(form, **kwargs)
+
+class Homeadditions(TemplateView):
+    template_name = 'home/homeadditions.html'
+
+
+class Planspermits(TemplateView):
+    template_name = 'home/planspermits.html'
+
+
+class Fatjo(TemplateView):
+    template_name = 'home/fatjo.html'
+
+
+class Sjdowntown(TemplateView):
+    template_name = 'home/sjdowntown.html'
+
+
+class Laterrace(TemplateView):
+    template_name = 'home/laterrace.html'
+
+
+class Cheltenham(TemplateView):
+    template_name = 'home/cheltenham.html'
+
+
+class Piper(TemplateView):
+    template_name = 'home/piper.html'
+
+
+class Daves(TemplateView):
+    template_name = 'home/daves.html'
+
+
+def create_lead(request):
+    if request.method == 'POST':
+        lead_form = LeadForm(request.POST)
+        if lead_form.is_valid():
+            consultation_request = lead_form.save()
+
+            # Prepare email content including selected consultation types
+            consultation_types_display = consultation_request.get_consultation_types_display()
+            full_message = (
+                f"Name: {consultation_request.name}\n"
+                f"Email: {consultation_request.email}\n"
+                f"Phone: {consultation_request.phone}\n"
+                f"Consultation Types: {consultation_types_display}\n\n"
+                f"Message:\n{consultation_request.message}"
+            )
+
+            try:
+                email_message = EmailMessage(
+                    subject=f'Request Consultation from {consultation_request.name}',
+                    body=full_message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=['info@parvizconstruction.com'],
+                )
+                email_message.send(fail_silently=False)
+                return redirect('home:create_lead_success')
+            except smtplib.SMTPException:
+                messages.error(request, 'There was an error sending your request. Please try again later.')
         else:
-            return self.form_invalid(form, **kwargs)
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        lead_form = LeadForm()
 
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        structure = form.cleaned_data['structure']
-        if structure == '1':
-            structure = 'Choose Structure'
-        elif structure == '2':
-            structure = 'Sunroom'
-        elif structure == '3':
-            structure = 'Retractable Pergola'
-        elif structure == '4':
-            structure = 'Louvered Roof'
-
-        message = form.cleaned_data['message']
-        final_message = 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Email: ' + email + '\n' + structure + '\n' + message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['info@parvizconstruction.com', ]
-        send_mail('some data', final_message, email_from, recipient_list)
-        return super(Contact, self).form_valid(form)
-
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
+    return render(request, 'home/create_lead.html', {'lead_form': lead_form})
 
 
-class Contact_Local(FormView):
-    template_name = 'home/contact_local.html'
-    success_url = 'success_sent'
-    form_class = ContactForm
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(Contact_Local, self).get_context_data(*args, **kwargs)
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-
-        if form.is_valid():
-            return self.form_valid(form, **kwargs)
-        else:
-            return self.form_invalid(form, **kwargs)
-
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        structure = form.cleaned_data['structure']
-        if structure == '1':
-            structure = 'Choose Structure'
-        elif structure == '2':
-            structure = 'Sunroom'
-        elif structure == '3':
-            structure = 'Retractable Pergola'
-        elif structure == '4':
-            structure = 'Louvered Roof'
-
-        message = form.cleaned_data['message']
-        final_message = 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Email: ' + email + '\n' + structure + '\n' + message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['info@parvizconstruction.com', ]
-        send_mail('data from parvizconstruction.com', final_message, email_from, recipient_list)
-        return super(Contact_Local, self).form_valid(form)
-
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
-
-
-class LouveredRoof(FormView):
-    template_name = 'home/louveredroof.html'
-    success_url = 'success_sent'
-    form_class = ContactForm
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(LouveredRoof, self).get_context_data(*args, **kwargs)
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-
-        if form.is_valid():
-            return self.form_valid(form, **kwargs)
-        else:
-            return self.form_invalid(form, **kwargs)
-
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        structure = form.cleaned_data['structure']
-        if structure == '1':
-            structure = 'Choose Structure'
-        elif structure == '2':
-            structure = 'Sunroom'
-        elif structure == '3':
-            structure = 'Retractable Pergola'
-        elif structure == '4':
-            structure = 'Louvered Roof'
-
-        message = form.cleaned_data['message']
-        final_message = 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Email: ' + email + '\n' + structure + '\n' + message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['info@parvizconstruction.com', ]
-        send_mail('data from parvizconstruction.com', final_message, email_from, recipient_list)
-        return super(LouveredRoof, self).form_valid(form)
-
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
-
-
-class Sunroom(FormView):
-    template_name = 'home/sunroom.html'
-    success_url = 'success_sent'
-    form_class = ContactForm
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(Sunroom, self).get_context_data(*args, **kwargs)
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-
-        if form.is_valid():
-            return self.form_valid(form, **kwargs)
-        else:
-            return self.form_invalid(form, **kwargs)
-
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        structure = form.cleaned_data['structure']
-        if structure == '1':
-            structure = 'Choose Structure'
-        elif structure == '2':
-            structure = 'Sunroom'
-        elif structure == '3':
-            structure = 'Retractable Pergola'
-        elif structure == '4':
-            structure = 'Louvered Roof'
-
-        message = form.cleaned_data['message']
-        final_message = 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Email: ' + email + '\n' + structure + '\n' + message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['info@parvizconstruction.com', ]
-        send_mail('some data', final_message, email_from, recipient_list)
-        return super(Sunroom, self).form_valid(form)
-
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
-
-
-class SuccessSent(TemplateView):
-    template_name = 'home/success_sent.html'
-
-
-class WorkFlow(TemplateView):
-    template_name = 'home/workflow.html'
-
-
-class Retractable(FormView):
-    template_name = 'home/retractable.html'
-    success_url = 'success_sent'
-    form_class = ContactForm
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(Retractable, self).get_context_data(*args, **kwargs)
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-
-        if form.is_valid():
-            return self.form_valid(form, **kwargs)
-        else:
-            return self.form_invalid(form, **kwargs)
-
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        structure = form.cleaned_data['structure']
-        if structure == '1':
-            structure = 'Choose Structure'
-        elif structure == '2':
-            structure = 'Sunroom'
-        elif structure == '3':
-            structure = 'Retractable Pergola'
-        elif structure == '4':
-            structure = 'Louvered Roof'
-
-        message = form.cleaned_data['message']
-        final_message = 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Email: ' + email + '\n' + structure + '\n' + message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['info@parvizconstruction.com', ]
-        send_mail('some data', final_message, email_from, recipient_list)
-        return super(Retractable, self).form_valid(form)
-
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
-
-
-class WinDoor(FormView):
-    template_name = 'home/win-door.html'
-    success_url = 'success_sent'
-    form_class = ContactForm
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(WinDoor, self).get_context_data(*args, **kwargs)
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-
-        if form.is_valid():
-            return self.form_valid(form, **kwargs)
-        else:
-            return self.form_invalid(form, **kwargs)
-
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        structure = form.cleaned_data['structure']
-        if structure == '1':
-            structure = 'Choose Structure'
-        elif structure == '2':
-            structure = 'Sunroom'
-        elif structure == '3':
-            structure = 'Retractable Pergola'
-        elif structure == '4':
-            structure = 'Louvered Roof'
-
-        message = form.cleaned_data['message']
-        final_message = 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Email: ' + email + '\n' + structure + '\n' + message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['info@parvizconstruction.com', ]
-        send_mail('some data', final_message, email_from, recipient_list)
-        return super(WinDoor, self).form_valid(form)
-
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
-
-
-class Sunshade(FormView):
-    template_name = 'home/sunshade.html'
-    success_url = 'success_sent'
-    form_class = ContactForm
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(Sunshade, self).get_context_data(*args, **kwargs)
-        return context
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-
-        if form.is_valid():
-            return self.form_valid(form, **kwargs)
-        else:
-            return self.form_invalid(form, **kwargs)
-
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        structure = form.cleaned_data['structure']
-        if structure == '1':
-            structure = 'Choose Structure'
-        elif structure == '2':
-            structure = 'Sunroom'
-        elif structure == '3':
-            structure = 'Retractable Pergola'
-        elif structure == '4':
-            structure = 'Louvered Roof'
-
-        message = form.cleaned_data['message']
-        final_message = 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Email: ' + email + '\n' + structure + '\n' + message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['info@parvizconstruction.com', ]
-        send_mail('some data', final_message, email_from, recipient_list)
-        return super(Sunshade, self).form_valid(form)
-
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
-
-
-
-from django.http import HttpResponse
-from django.contrib.gis.geoip2 import GeoIP2
-
-
+def create_lead_success(request):
+    return render(request, 'home/createlead_success.html')
 
 
 def get_client_ip(request):
@@ -367,6 +131,7 @@ def get_client_ip(request):
     else:
         ip = request.META.get("REMOTE_ADDR")
     return ip
+
 
 def geoip_test(request):
     """Show detected IP + country for debugging."""
