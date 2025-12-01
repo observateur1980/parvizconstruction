@@ -1,20 +1,22 @@
 import os
+from pathlib import Path
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Base directory (root of the project)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+# -----------------------------------------------------------------------------
+# Base settings (shared by local.py and production.py)
+# -----------------------------------------------------------------------------
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^zf1o!jgk9425ezll!%dw%556(m4$gbfev)=e&e&=kbs&3j9-9'
+SECRET_KEY = 'base-secret-not-used-in-production'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = []
 
-# Application definition
+# -----------------------------------------------------------------------------
+# Installed apps
+# -----------------------------------------------------------------------------
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -23,12 +25,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
-    'django_recaptcha',
-    'account',
-    'django_forbid',
 
+    'home',
+    'account',
+    'django_recaptcha',
+    'django_forbid',
 ]
+
+# -----------------------------------------------------------------------------
+# Middleware
+# -----------------------------------------------------------------------------
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -39,17 +45,21 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'django_forbid.middleware.ForbidMiddleware', #bu olkeleri block etmek uchundur
+    'django_forbid.middleware.ForbidMiddleware',
 ]
 
-WHITELIST_COUNTRIES = ['US',] #yalniz USA dan girmek olar.
+WHITELIST_COUNTRIES = ['US']
 
 ROOT_URLCONF = 'parvizconstruction.urls'
+
+# -----------------------------------------------------------------------------
+# Templates
+# -----------------------------------------------------------------------------
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,66 +74,60 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'parvizconstruction.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# -----------------------------------------------------------------------------
+# Database (default for local; overridden in production.py)
+# -----------------------------------------------------------------------------
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+# -----------------------------------------------------------------------------
 # Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
+# -----------------------------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+# -----------------------------------------------------------------------------
 # Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
+# -----------------------------------------------------------------------------
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
-USE_L10N = True
-
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# -----------------------------------------------------------------------------
+# Static & Media settings (overridden in production)
+# -----------------------------------------------------------------------------
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+# -----------------------------------------------------------------------------
+# Email (overridden in production)
+# -----------------------------------------------------------------------------
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'smtpforwebpages@gmail.com'
-EMAIL_HOST_PASSWORD = 'qercfgriuwhlulte'
+EMAIL_HOST_USER = ''   # override in production.py or local.py
+EMAIL_HOST_PASSWORD = ''  # override in production.py or local.py
 
+# -----------------------------------------------------------------------------
+# Default primary key
+# -----------------------------------------------------------------------------
 
-
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-GEOIP_PATH = os.path.join(BASE_DIR, 'geoip') #olkeleri block etmek uchun
+# GeoIP path (for django_forbid)
+GEOIP_PATH = BASE_DIR / 'geoip'
