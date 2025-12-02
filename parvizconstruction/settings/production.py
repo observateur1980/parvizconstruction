@@ -6,7 +6,7 @@ from .base import *
 
 DEBUG = False
 
-SECRET_KEY = 'REPLACE_ME_WITH_A_NEW_SECURE_KEY'
+SECRET_KEY = '-5v6wjxts6a_mqzjb5u^n_m*&%y7=^ej!&0f39fr%sro(1z1ko'
 
 ALLOWED_HOSTS = [
     'parvizconstruction.com',

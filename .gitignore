@@ -1,5 +1,7 @@
 static/video/
 geoip/
+
+staticfiles/
 .AppleDouble
 .LSOverride
 static/images/projects
