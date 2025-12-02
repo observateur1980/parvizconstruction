@@ -1,4 +1,6 @@
+# parvizconstruction/settings/production.py
 from .base import *
+import os
 
 # ----------------------------------------------------------------------
 # SECURITY
@@ -6,20 +8,25 @@ from .base import *
 
 DEBUG = False
 
-SECRET_KEY = '-5v6wjxts6a_mqzjb5u^n_m*&%y7=^ej!&0f39fr%sro(1z1ko'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+if not SECRET_KEY:
+    raise Exception("Missing DJANGO_SECRET_KEY environment variable!")
 
 ALLOWED_HOSTS = [
     "parvizconstruction.com",
     "www.parvizconstruction.com",
-    "127.0.0.1",
-    "localhost",
+    "127.0.0.1",      # allows local testing
+    "localhost",       # allows local testing
 ]
 
 # ----------------------------------------------------------------------
-# PostgreSQL Database (production)
+# Database:
+# PostgreSQL in production
+# SQLite fallback on local machine
 # ----------------------------------------------------------------------
 
 if os.environ.get("USE_SQLITE_IN_LOCAL"):
+    print(">>> USING SQLITE (LOCAL MODE) <<<")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -27,6 +34,7 @@ if os.environ.get("USE_SQLITE_IN_LOCAL"):
         }
     }
 else:
+    print(">>> USING POSTGRESQL (PRODUCTION MODE) <<<")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -39,28 +47,28 @@ else:
     }
 
 # ----------------------------------------------------------------------
-# Static & Media paths (for Nginx)
+# Static & Media (served by Nginx)
 # ----------------------------------------------------------------------
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
-
-# ----------------------------------------------------------------------
-# Email config
-# ----------------------------------------------------------------------
-
-EMAIL_HOST_USER = 'smtpforwebpages@gmail.com'
-EMAIL_HOST_PASSWORD = 'qercfgriuwhlulte'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # ----------------------------------------------------------------------
-# reCAPTCHA keys
+# Email
 # ----------------------------------------------------------------------
 
-RECAPTCHA_PUBLIC_KEY = '6LeQ0mUqAAAAAOugpr5ComdF5DTwaiwnJGelR9k9'
-RECAPTCHA_PRIVATE_KEY = '6LeQ0mUqAAAAAM1LrkO6Y-9__xDLpUTaDmEexLvZ'
+EMAIL_HOST_USER = "smtpforwebpages@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_APP_PASSWORD")
+
+# ----------------------------------------------------------------------
+# reCAPTCHA
+# ----------------------------------------------------------------------
+
+RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
 
 # ----------------------------------------------------------------------
 # Security Headers
@@ -70,4 +78,4 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
+X_FRAME_OPTIONS = "DENY"
