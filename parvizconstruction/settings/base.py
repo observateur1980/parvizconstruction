@@ -95,8 +95,21 @@ USE_TZ = True
 # Static & Media settings (overridden in production)
 # -----------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------
+# Static & Media settings (shared)
+# -----------------------------------------------------------------------------
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # -----------------------------------------------------------------------------
 # Email (overridden in production)
