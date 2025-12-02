@@ -1,9 +1,6 @@
 import os
-from pathlib import Path
 
-# Base directory (root of the project)
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # -----------------------------------------------------------------------------
 # Base settings (shared by local.py and production.py)
 # -----------------------------------------------------------------------------
@@ -59,7 +56,7 @@ ROOT_URLCONF = 'parvizconstruction.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,17 +70,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'parvizconstruction.wsgi.application'
-
-# -----------------------------------------------------------------------------
-# Database (default for local; overridden in production.py)
-# -----------------------------------------------------------------------------
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 # -----------------------------------------------------------------------------
 # Password validation
@@ -120,7 +106,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ''   # override in production.py or local.py
+EMAIL_HOST_USER = ''  # override in production.py or local.py
 EMAIL_HOST_PASSWORD = ''  # override in production.py or local.py
 
 # -----------------------------------------------------------------------------
@@ -130,4 +116,4 @@ EMAIL_HOST_PASSWORD = ''  # override in production.py or local.py
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # GeoIP path (for django_forbid)
-GEOIP_PATH = BASE_DIR / 'geoip'
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
