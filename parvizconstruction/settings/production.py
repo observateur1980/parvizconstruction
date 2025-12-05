@@ -1,6 +1,11 @@
-# parvizconstruction/settings/production.py
-from .base import *
 import os
+from dotenv import load_dotenv
+
+# Load .env FIRST
+ENV_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env")
+load_dotenv(ENV_PATH)
+
+from .base import *
 
 # ----------------------------------------------------------------------
 # SECURITY
@@ -49,6 +54,8 @@ else:
 # ----------------------------------------------------------------------
 # Static & Media (served by Nginx)
 # ----------------------------------------------------------------------
+
+
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")

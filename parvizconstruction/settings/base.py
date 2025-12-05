@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # Base settings (shared by local.py and production.py)
 # -----------------------------------------------------------------------------
 
-SECRET_KEY = 'base-secret-not-used-in-production'
+SECRET_KEY = '-5v6wjxts6a_mqzjb5u^n_m*&%y7=^ej!&0f39fr%sro(1z1ko'
 
 DEBUG = False
 

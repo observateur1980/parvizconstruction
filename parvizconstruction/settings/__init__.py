@@ -1,7 +1,9 @@
 from .base import *
-from .production import *
 
+# Try to load local settings first
 try:
     from .local import *
-except:
-    pass
+    print("Loaded local settings.")
+except ImportError:
+    from .production import *
+    print("Loaded production settings.")
