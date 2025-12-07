@@ -5,7 +5,6 @@ django-recaptcha==4.0.0
 sqlparse==0.5.1
 
 device-detector==5.0.1
-geoip2==4.8.0
 maxminddb==2.6.2
 
 certifi==2024.7.4
