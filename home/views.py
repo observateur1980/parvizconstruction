@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 
 from django.http import HttpResponse
-from django.contrib.gis.geoip2 import GeoIP2
+
 
 from .forms import LeadForm
 from django.shortcuts import render, redirect

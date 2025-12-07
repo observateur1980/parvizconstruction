@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'home',
     'account',
     'django_recaptcha',
-    'django_forbid',
+
 ]
 
 # -----------------------------------------------------------------------------
@@ -42,10 +42,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'django_forbid.middleware.ForbidMiddleware',
+
 ]
 
-WHITELIST_COUNTRIES = ['US']
+
 
 ROOT_URLCONF = 'parvizconstruction.urls'
 
@@ -128,5 +128,3 @@ EMAIL_HOST_PASSWORD = ''  # override in production.py or local.py
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# GeoIP path (for django_forbid)
-GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
