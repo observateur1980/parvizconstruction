@@ -20,8 +20,7 @@ if not SECRET_KEY:
 ALLOWED_HOSTS = [
     "parvizconstruction.com",
     "www.parvizconstruction.com",
-    "127.0.0.1",      # allows local testing
-    "localhost",       # allows local testing
+
 ]
 
 # ----------------------------------------------------------------------
