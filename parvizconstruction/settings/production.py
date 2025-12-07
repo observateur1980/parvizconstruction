@@ -43,7 +43,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "parvizconstruction",
+            "NAME": "parvizconstruction_db",
             "USER": "parviz",
             "PASSWORD": os.environ.get("DB_PASSWORD"),
             "HOST": "localhost",
