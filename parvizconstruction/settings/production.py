@@ -29,31 +29,21 @@ ALLOWED_HOSTS = [
 # SQLite fallback on local machine
 # ----------------------------------------------------------------------
 
-if os.environ.get("USE_SQLITE_IN_LOCAL"):
-    print(">>> USING SQLITE (LOCAL MODE) <<<")
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "parvizconstruction_db",
+        "USER": "parviz",
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": "localhost",
+        "PORT": "5432",
     }
-else:
-    print(">>> USING POSTGRESQL (PRODUCTION MODE) <<<")
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "parvizconstruction_db",
-            "USER": "parviz",
-            "PASSWORD": os.environ.get("DB_PASSWORD"),
-            "HOST": "localhost",
-            "PORT": "5432",
-        }
-    }
+}
 
 # ----------------------------------------------------------------------
 # Static & Media (served by Nginx)
 # ----------------------------------------------------------------------
-
 
 
 STATIC_URL = "/static/"
