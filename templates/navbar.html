@@ -111,7 +111,7 @@
 
 <div class="icon-bar hidden-xs">
 
-  <a href="#"><i class="fa fa-phone">&nbsp; +1 650 770 5303</i></a>
+  <a href="tel:6506605101"><i class="fa fa-phone">&nbsp; +1 650 660 5101</i></a>
   <a href="{% url 'create_lead' %}"><i class="fa fa-envelope">&nbsp; Contact us</i></a>
 
 </div>
@@ -160,8 +160,20 @@
 
                 </ul>
             </li>
-{#            <li><a href="#">DESIGNER SERIES</a></li>#}
-            <li><a href="{% url 'video' %}">Videos</a></li>
+
+            
+            <li><a href="#">Videos <i class="fa fa-angle-down fa-indicator"></i></a>
+                <!-- drop down multilevel  -->
+                <ul class="drop-down-multilevel">
+
+                    <li><a href="{% url 'video' %}">Videos</a></li>
+                    <li><a href="{% url 'videoreviews' %}">Videos Reviews</a></li>
+
+
+
+                </ul>
+            </li>
+
             <li><a href="{% url 'gallery' %}">Gallery</a></li>
             <li><a href="{% url 'projects' %}">Projects</a>
             </li>

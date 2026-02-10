@@ -1,5 +1,7 @@
 # admin.py
+# home/admin.py
 from django.contrib import admin
+from .models import VideoReview
 from .models import LeadModel
 from django.utils.html import format_html
 from .models import (
@@ -10,6 +12,8 @@ from .models import (
     ProjectTag,
     Testimonial
 )
+
+
 
 
 @admin.register(Testimonial)
@@ -81,3 +85,15 @@ class LeadAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'phone')
 
     list_display_links = ('name',)
+
+
+
+
+@admin.register(VideoReview)
+class VideoReviewAdmin(admin.ModelAdmin):
+    list_display = ("order", "title", "customer_name", "is_active", "is_featured", "created_at")
+    list_display_links = ("title",)   # ✅ make title the clickable link
+    list_editable = ("order", "is_active", "is_featured")
+    search_fields = ("title", "customer_name")
+    list_filter = ("is_active", "is_featured")
+    ordering = ("order", "-created_at")

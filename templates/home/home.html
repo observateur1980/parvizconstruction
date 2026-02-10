@@ -22,8 +22,8 @@
             <img loading="lazy" src="{% static 'images/slider/kitchen_remodeling_vertical.jpg' %}" alt="Snow">
 
             <div class="hero-buttons">
-                <a href="#" class="btn1 button  mt-15">
-                    <span>Call 800 334 83-00</span>
+                <a href="tel:6506605101" class="btn1 button  mt-15">
+                    <span>Call 650 660 51-01</span>
                 </a>
 
                 <a href="{% url 'create_lead' %}"
@@ -111,13 +111,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="team-4 text-center">
                         <div class="team-image">
-                            <a href="#">
+                            <a href="{% url 'kitchen_remodeling' %}">
                                 <img loading="lazy" class="img-responsive center-block"
                                      src="{% static 'images/services/kitchen-remodel.jpg' %}" alt="">
                             </a>
                         </div>
                         <div class="team-name">
-                            <h5><a href="#">Kitchen Remodeling</a></h5>
+                            <h5><a href="{% url 'kitchen_remodeling' %}">Kitchen Remodeling</a></h5>
 
 
                         </div>
@@ -127,13 +127,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="team-4 text-center">
                         <div class="team-image">
-                            <a href="#">
+                            <a href="{% url 'bathroom' %}">
                                 <img loading="lazy" class="img-responsive center-block"
                                      src="{% static 'images/services/bathroom-remodel.jpg' %}" alt="">
                             </a>
                         </div>
                         <div class="team-name">
-                            <h5><a href="#">Bathroom Remodeling</a></h5>
+                            <h5><a href="{% url 'bathroom' %}">Bathroom Remodeling</a></h5>
 
 
                         </div>
@@ -143,13 +143,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="team-4 text-center">
                         <div class="team-image">
-                            <a href="#">
+                            <a href="{% url 'garage' %}">
                                 <img loading="lazy" class="img-responsive center-block"
                                      src="{% static 'images/services/schildorf garage makeover.jpg' %}" alt="">
                             </a>
                         </div>
                         <div class="team-name">
-                            <h5><a href="#">Garage Remodeling</a></h5>
+                            <h5><a href="{% url 'garage' %}">Garage Remodeling</a></h5>
 
                         </div>
 
@@ -158,13 +158,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="team-4 text-center">
                         <div class="team-image">
-                            <a href="#">
+                            <a href="{% url 'homeremodel' %}">
                                 <img loading="lazy" class="img-responsive center-block"
                                      src="{% static 'images/services/totalhouse.jpg' %}" alt="">
                             </a>
                         </div>
                         <div class="team-name">
-                            <h5><a href="#">Home Remodeling</a></h5>
+                            <h5><a href="{% url 'homeremodel' %}">Home Remodeling</a></h5>
 
                         </div>
 
@@ -173,13 +173,13 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="team-4 text-center">
                         <div class="team-image">
-                            <a href="#">
+                            <a href="{% url 'homeadditions' %}">
                                 <img loading="lazy" class="img-responsive center-block"
                                      src="{% static 'images/services/adu.jpg' %}" alt="">
                             </a>
                         </div>
                         <div class="team-name">
-                            <h5><a href="#">Home Additions</a></h5>
+                            <h5><a href="{% url 'homeadditions' %}">Home Additions</a></h5>
 
                         </div>
 
@@ -210,7 +210,7 @@
                     <h3 class="text-white">Contact us today for a free estimate</h3>
                 </div>
                 <div class="col-lg-4 col-md-4 text-right action-box-button">
-                    <a href="#" class="button button-white mt-15 btn-lg">
+                    <a href="{% url 'create_lead' %}" class="button button-white mt-15 btn-lg">
                         <span>REQUEST YOUR FREE CONSULTATION</span>
                         <i class="fa fa-hand-o-right"></i>
                     </a>
@@ -318,8 +318,8 @@
                 <div class="col-lg-12 col-md-12 text-center">
                     <h2 class="mb-30" style="color: grey">See why homeowners trust us.</h2>
 
-                    <a class="button button-black" target="_blank"
-                       href="#"><span> Explore stories from our happy clients. </span></a>
+                    <a class="button button-black"
+                       href="{% url 'videoreviews' %}"><span> Explore stories from our happy clients. </span></a>
                 </div>
             </div>
         </div>

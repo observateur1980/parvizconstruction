@@ -21,8 +21,12 @@ urlpatterns = [
     path("home-remodel/", views.Homeremodel.as_view(), name="homeremodel"),
     path("home-additions/", views.Homeadditions.as_view(), name="homeadditions"),
 
+    path("videoreviews/", views.videoreviews, name="videoreviews"),
 
     # LEADS
     path("contact/", views.create_lead, name="create_lead"),
     path("contact/success/", views.create_lead_success, name="create_lead_success"),
+
+
+    path("copyright/", views.CopyrightPage.as_view(), name="copyright"),
 ]

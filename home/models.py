@@ -306,3 +306,30 @@ def create_watermark(source_field, target_field, opacity=0.25, scale=0.25, margi
 
     except Exception:
         return
+
+
+class VideoReview(models.Model):
+    title = models.CharField(max_length=200)
+    customer_name = models.CharField(max_length=100, blank=True)
+
+    # Upload the actual video file (mp4/webm recommended)
+    video = models.FileField(upload_to="video_reviews/")
+
+    # Optional: poster image so the video shows a nice preview before play
+    thumbnail = models.ImageField(
+        upload_to="video_reviews/thumbnails/",
+        blank=True,
+        null=True
+    )
+
+    is_active = models.BooleanField(default=True)
+    is_featured = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["order", "-created_at"]
+
+    def __str__(self):
+        return f"{self.order} - {self.title}"

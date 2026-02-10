@@ -7,8 +7,7 @@ from django.contrib import messages
 from django.conf import settings
 import smtplib
 from django.shortcuts import render, get_object_or_404
-from .models import Project, Testimonial
-
+from .models import Project, Testimonial, VideoReview
 
 
 def projects(request):
@@ -61,7 +60,6 @@ class Gallery(TemplateView):
     template_name = 'home/gallery.html'
 
 
-
 class Newconstruction(TemplateView):
     template_name = 'home/newconstruction.html'
 
@@ -86,6 +84,28 @@ class Homeadditions(TemplateView):
     template_name = 'home/homeadditions.html'
 
 
+# home/views.py
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from .models import VideoReview
+
+
+def videoreviews(request):
+    featured = VideoReview.objects.filter(is_active=True, is_featured=True).order_by("order", "-created_at")
+
+    qs = VideoReview.objects.filter(is_active=True, is_featured=False).order_by("order", "-created_at")
+    paginator = Paginator(qs, 6)  # 9 per click (3x3)
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+
+    # AJAX request: return only the cards
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return render(request, "home/partials/_video_cards.html", {"page_obj": page_obj})
+
+    return render(request, "home/videoreviews.html", {
+        "featured": featured,
+        "page_obj": page_obj,
+    })
 
 
 def create_lead(request):
@@ -125,3 +145,7 @@ def create_lead(request):
 
 def create_lead_success(request):
     return render(request, 'home/createlead_success.html')
+
+
+class CopyrightPage(TemplateView):
+    template_name = "home/copyright.html"

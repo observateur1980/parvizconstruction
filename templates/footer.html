@@ -1,5 +1,16 @@
 {% load static %}
+<style>
+    .recent-post-image img{
+  width:100%;
+  border-radius:6px;
+  transition: transform .2s ease, opacity .2s ease;
+}
 
+.recent-post:hover img{
+  transform: scale(1.03);
+  opacity:.9;
+}
+</style>
 
 <!--=================================
  footer -->
@@ -12,10 +23,10 @@
                     <p class="text-white">Schedule a Free In-Home Consultation</p>
                 </div>
                 <div class="col-lg-4 col-md-4 text-right action-box-button">
-                    <a href="#" class="button button-white mt-15">
-                        <span>+1 650 770 5303</span>
-                        <i class="fa fa-phone"></i>
-                    </a>
+                    <a class="button button-white mt-15" href="tel:6506605101">
+                        <span>+1 650 660 5101</span>
+                        <i class="fa fa-phone"></i></a>
+
 
                 </div>
             </div>
@@ -32,34 +43,43 @@
                     <h4 class="text-white">Get in touch</h4>
 
                     <a style="font-size: medium" href="#" class="text-white">Request Free Consultation</a><br>
-                    <a style="font-size: medium" href="#" class="text-white">+1 650 770 5303</a><br>
+                    <a style="font-size: medium" href="tel:6506605101" class="text-white">+1 650 660 5101</a><br>
                     <a  style="font-size: medium" class="text-white">2074 Walsh Ave ste B <br> Santa Clara CA 95050</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
-                <div class="recent-post footer-hedding">
-                    <h4 class="text-blue mb-30">Recent Posts</h4>
-                    <div class="recent-post mb-30">
-                        <div class="recent-post-image">
-                            <img src="{% static 'images/portfolio/small/01.jpg' %}" alt="">
-                        </div>
-                        <div class="recent-post-info">
-                            <a href="#">Omnis voluptas ...</a>
-                            <span><i class="fa fa-calendar"></i> September 30, 2015</span>
-                        </div>
-                    </div>
+  <div class="recent-post footer-hedding">
+    <h4 class="text-blue mb-30">Recent Video Reviews</h4>
 
-                    <div class="recent-post mb-30">
-                        <div class="recent-post-image">
-                            <img src="{% static 'images/portfolio/small/02.jpg' %}" alt="">
-                        </div>
-                        <div class="recent-post-info">
-                            <a href="#">Omnis voluptas ...</a>
-                            <span><i class="fa fa-calendar"></i> September 30, 2015</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    {% if footer_video_reviews %}
+      {% for v in footer_video_reviews %}
+        <div class="recent-post mb-30">
+          <div class="recent-post-image">
+            {% if v.thumbnail %}
+              <img src="{{ v.thumbnail.url }}" alt="{{ v.title }}">
+            {% else %}
+              <!-- fallback if no thumbnail -->
+              <img src="{% static 'images/video-placeholder.jpg' %}" alt="Video review">
+            {% endif %}
+          </div>
+
+          <div class="recent-post-info">
+            <a href="{% url 'videoreviews' %}">
+              {{ v.title|truncatechars:25 }}
+            </a>
+            <span>
+              <i class="fa fa-calendar"></i>
+              {{ v.created_at|date:"F j, Y" }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted">No video reviews yet.</p>
+    {% endif %}
+
+  </div>
+</div>
             <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="footer-flickr footer-hedding">
                     <h4 class="text-blue mb-30">Instagram</h4>
@@ -86,18 +106,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <p class="text-white mt-15"> &copy;Copyright &nbsp;|&nbsp; All Rights Reserved &nbsp;|&nbsp; <a
-                            href="#" style="color: whitesmoke">Dealer Area</a></p>
+                    <p class="text-white mt-15"><a style="color: white" href="{% url 'copyright' %}"> &copy;Copyright</a> &nbsp;|&nbsp; All Rights Reserved &nbsp;</p>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="footer-widget-social">
                         <ul>
                             <li><a href="#" data-tooltip="facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" data-tooltip="twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" data-tooltip="dribbble"><i class="fa fa-dribbble"></i> </a></li>
-                            <li><a href="#" data-tooltip="Vimeo"><i class="fa fa-vimeo"></i> </a></li>
                             <li><a href="#" data-tooltip="Pinterest"><i class="fa fa-pinterest-p"></i> </a></li>
-                            <li><a href="#" data-tooltip="Behance"><i class="fa fa-behance"></i> </a></li>
                             <li><a href="#" data-tooltip="Linkedin"><i class="fa fa-linkedin"></i> </a></li>
                         </ul>
                     </div>
