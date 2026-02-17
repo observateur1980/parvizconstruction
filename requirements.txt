@@ -4,19 +4,14 @@ django-multiselectfield==1.0.1
 django-recaptcha==4.0.0
 sqlparse==0.5.1
 
-device-detector==5.0.1
-maxminddb==2.6.2
-
 certifi==2024.7.4
 charset-normalizer==3.4.0
 idna==3.10
 pytz==2025.1
-PyYAML==6.0.2
-regex==2024.11.6
 requests==2.32.3
 urllib3==2.2.3
-typing_extensions==4.12.2
 
 psycopg2-binary==2.9.10
-Pillow
-django-imagekit
+Pillow==11.1.0
+django-imagekit==5.0.0
+python-dotenv==1.0.1
