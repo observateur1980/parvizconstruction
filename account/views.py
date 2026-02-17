@@ -1,14 +1,11 @@
-from django.shortcuts import render
-from .forms import  UserLoginForm
-from django.http import HttpResponseRedirect
 from django.contrib.auth import login, get_user_model, logout
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 
+from .forms import UserLoginForm
 
 User = get_user_model()
-
-
-# Create your views here.
 
 
 def user_login(request, *args, **kwargs):
@@ -16,7 +13,7 @@ def user_login(request, *args, **kwargs):
     if form.is_valid():
         user_obj = form.cleaned_data.get('user_obj')
         login(request, user_obj)
-        return HttpResponseRedirect(reverse('dealer:lead_page'))
+        return HttpResponseRedirect(reverse('home'))
 
     return render(request, 'account/login.html',
                   {'form': form, 'menu': "login"}
@@ -25,4 +22,4 @@ def user_login(request, *args, **kwargs):
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect('login')
+    return HttpResponseRedirect(reverse('account:login'))
