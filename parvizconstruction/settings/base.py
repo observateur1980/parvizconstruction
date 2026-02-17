@@ -5,10 +5,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # Base settings (shared by local.py and production.py)
 # -----------------------------------------------------------------------------
 
-SECRET_KEY = '-5v6wjxts6a_mqzjb5u^n_m*&%y7=^ej!&0f39fr%sro(1z1ko'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'dev-only-insecure-key-do-not-use-in-production'
+)
 
 DEBUG = False
 
+# -----------------------------------------------------------------------------
+# Custom user model
+# -----------------------------------------------------------------------------
+
+AUTH_USER_MODEL = 'account.MyUser'
 
 # -----------------------------------------------------------------------------
 # Installed apps
