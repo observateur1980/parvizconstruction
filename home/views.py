@@ -1,13 +1,35 @@
+import smtplib
+
+from django.conf import settings
+from django.contrib import messages
+from django.core.mail import EmailMessage
+from django.core.paginator import Paginator
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 
 from .forms import LeadForm
-from django.shortcuts import render, redirect
-from django.core.mail import EmailMessage
-from django.contrib import messages
-from django.conf import settings
-import smtplib
-from django.shortcuts import render, get_object_or_404
 from .models import Project, Testimonial, VideoReview
+
+
+def home(request):
+    MAX_TESTIMONIALS = 6
+
+    featured = Testimonial.objects.filter(
+        is_active=True,
+        is_featured=True
+    ).order_by("order")
+
+    others = Testimonial.objects.filter(
+        is_active=True,
+        is_featured=False
+    ).order_by("order")
+
+    testimonials = list(featured) + list(others)
+    testimonials = testimonials[:MAX_TESTIMONIALS]
+
+    return render(request, "home/home.html", {
+        "testimonials": testimonials
+    })
 
 
 def projects(request):
@@ -27,28 +49,6 @@ def project_detail(request, slug):
         "before": before,
         "construction": construction,
         "after": after,
-    })
-
-
-# Create your views here.
-def home(request):
-    MAX_TESTIMONIALS = 6
-
-    featured = Testimonial.objects.filter(
-        is_active=True,
-        is_featured=True
-    ).order_by("order")
-
-    others = Testimonial.objects.filter(
-        is_active=True,
-        is_featured=False
-    ).order_by("order")
-
-    testimonials = list(featured) + list(others)
-    testimonials = testimonials[:MAX_TESTIMONIALS]
-
-    return render(request, "home/home.html", {
-        "testimonials": testimonials
     })
 
 
@@ -84,17 +84,11 @@ class Homeadditions(TemplateView):
     template_name = 'home/homeadditions.html'
 
 
-# home/views.py
-from django.core.paginator import Paginator
-from django.shortcuts import render
-from .models import VideoReview
-
-
 def videoreviews(request):
     featured = VideoReview.objects.filter(is_active=True, is_featured=True).order_by("order", "-created_at")
 
     qs = VideoReview.objects.filter(is_active=True, is_featured=False).order_by("order", "-created_at")
-    paginator = Paginator(qs, 6)  # 9 per click (3x3)
+    paginator = Paginator(qs, 6)
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
 

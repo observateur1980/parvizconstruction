@@ -75,7 +75,7 @@ def post_save_user_model_receiver(sender, instance, created, *args, **kwargs):
     if created:
         try:
             Profile.objects.create(user=instance)
-        except:
+        except Exception:
             pass
 
 

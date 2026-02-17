@@ -127,7 +127,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = ''  # override in production.py or local.py
 EMAIL_HOST_PASSWORD = ''  # override in production.py or local.py
-DEFAULT_FROM_EMAIL = "PC New Lead <info@barcadon.com>"
+DEFAULT_FROM_EMAIL = "PC New Lead <info@parvizconstruction.com>"
 # -----------------------------------------------------------------------------
 # Default primary key
 # -----------------------------------------------------------------------------
