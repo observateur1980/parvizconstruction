@@ -962,7 +962,7 @@ $.extend(true, $.magnificPopup.defaults, {
            youtube: {
               index: 'youtube.com/', 
               id: 'v=', 
-              src: 'http://www.youtube.com/embed/%id%?autoplay=1' 
+              src: 'https://www.youtube.com/embed/%id%?autoplay=1'
           }
         }
     }
@@ -975,7 +975,7 @@ $.extend(true, $.magnificPopup.defaults, {
            vimeo: {
               index: 'vimeo.com/',
               id: '/',
-              src: 'http://player.vimeo.com/video/%id%?autoplay=1'
+              src: 'https://player.vimeo.com/video/%id%?autoplay=1'
             },
         }
     }
@@ -1063,7 +1063,7 @@ $('.widget-menu > ul > li > a').click(function() {
      audio video
 *************************/
  
-if($(".audio-video").length != 0) {
+if ($(".audio-video").length && $.fn.mediaelementplayer) {
   $('audio,video').mediaelementplayer();
 }
 
