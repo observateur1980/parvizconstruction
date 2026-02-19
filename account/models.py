@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.core.validators import RegexValidator
 from django.db.models.signals import post_save
 
@@ -22,18 +22,15 @@ class MyUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password):
-        user = self.create_user(
-            username,
-            email,
-            password=password,
-        )
-        # You can decide if you want is_staff True for superuser
+        user = self.create_user(username, email, password=password)
         user.is_staff = True
+        user.is_superuser = True
+        user.is_active = True
         user.save(using=self._db)
         return user
 
 
-class MyUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         max_length=120,
         validators=[
