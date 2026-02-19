@@ -1062,10 +1062,7 @@ $('.widget-menu > ul > li > a').click(function() {
 /*************************
      audio video
 *************************/
- 
-if ($(".audio-video").length && $.fn.mediaelementplayer) {
-  $('audio,video').mediaelementplayer();
-}
+
 
 /*************************
           tabs
