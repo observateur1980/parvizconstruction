@@ -2,7 +2,7 @@
 # home/admin.py
 from django.contrib import admin
 from .models import VideoReview
-from .models import LeadModel
+from .models import LeadModel, LeadAttachment
 from django.utils.html import format_html
 from .models import (
     Project,
@@ -78,6 +78,12 @@ class ProjectAdmin(admin.ModelAdmin):
         return "-"
 
 
+class LeadAttachmentInline(admin.TabularInline):
+    model = LeadAttachment
+    extra = 0
+    fields = ("file", "uploaded_at")
+    readonly_fields = ("uploaded_at",)
+
 @admin.register(LeadModel)
 class LeadAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'phone', 'get_consultation_types_display', 'created_at')
@@ -85,6 +91,7 @@ class LeadAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'phone')
 
     list_display_links = ('name',)
+    inlines = [LeadAttachmentInline]
 
 
 

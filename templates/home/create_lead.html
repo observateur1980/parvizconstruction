@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="row">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
       <div class="col-md-8 col-md-offset-2">
         <div id="register-form" class="register-form">
@@ -68,6 +68,25 @@
                    {{ lead_form.message }}
                    </div>
                   </div>
+
+
+            <div class="section-field" style="margin-top: 25px">
+              <label for="id_attachments">Upload photos / videos (optional)</label>
+              <div class="field-widget">
+                <i class="fa fa-paperclip"></i>
+                {{ lead_form.attachments }}
+                {% if lead_form.attachments.help_text %}
+                  <small style="display:block; margin-top:8px; opacity:.75;">
+                    {{ lead_form.attachments.help_text }}
+                  </small>
+                {% endif %}
+                {% if lead_form.attachments.errors %}
+                  <div style="margin-top:8px; color:#c0392b;">
+                    {{ lead_form.attachments.errors }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
 
               <button type="submit" class="button mt-20" >
                 <span>REQUEST A CONSULTATION</span>

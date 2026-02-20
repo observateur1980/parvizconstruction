@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 
 from .forms import LeadForm
-from .models import Project, Testimonial, VideoReview
+from .models import Project, Testimonial, VideoReview, LeadAttachment
 
 
 def home(request):
@@ -104,19 +104,30 @@ def videoreviews(request):
 
 def create_lead(request):
     if request.method == 'POST':
-        lead_form = LeadForm(request.POST)
+        lead_form = LeadForm(request.POST, request.FILES)
         if lead_form.is_valid():
             consultation_request = lead_form.save()
 
+            # Save uploaded attachments (optional)
+            uploaded_files = lead_form.cleaned_data.get("attachments") or []
+            for f in uploaded_files:
+                LeadAttachment.objects.create(lead=consultation_request, file=f)
+
             # Prepare email content including selected consultation types
             consultation_types_display = consultation_request.get_consultation_types_display()
+            # Include attachment names in the email (do NOT attach large files to email)
+            attachment_names = [f.name for f in uploaded_files]
+            attachments_text = (
+                "\n\nAttachments:\n" + "\n".join(f"- {n}" for n in attachment_names)
+            ) if attachment_names else ""
+
             full_message = (
                 f"Name: {consultation_request.name}\n"
                 f"Email: {consultation_request.email}\n"
                 f"Phone: {consultation_request.phone}\n"
                 f"Consultation Types: {consultation_types_display}\n\n"
                 f"Message:\n{consultation_request.message}"
-            )
+            ) + attachments_text
 
             try:
                 email_message = EmailMessage(

@@ -261,6 +261,25 @@ class LeadModel(models.Model):
         return f"Lead Request #{self.id} from {self.name}"
 
 
+class LeadAttachment(models.Model):
+    """Optional photos/videos uploaded by the customer with the consultation request."""
+
+    lead = models.ForeignKey(
+        LeadModel,
+        related_name="attachments",
+        on_delete=models.CASCADE,
+    )
+
+    file = models.FileField(upload_to="lead_attachments/%Y/%m/")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-uploaded_at", "-id"]
+
+    def __str__(self):
+        return f"Lead #{self.lead_id} - {self.file.name}"
+
+
 def create_watermark(source_field, target_field, opacity=0.25, scale=0.25, margin=20):
     """
     Create a watermarked copy WITHOUT touching the original image.

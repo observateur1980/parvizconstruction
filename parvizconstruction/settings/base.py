@@ -122,6 +122,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# -----------------------------------------------------------------------------
+# Upload limits / safety
+# - Big files will stream to disk once they exceed FILE_UPLOAD_MAX_MEMORY_SIZE.
+# - Nginx must ALSO allow the max upload size (client_max_body_size).
+# -----------------------------------------------------------------------------
+
+# Keep memory usage reasonable while still allowing large videos
+DATA_UPLOAD_MAX_MEMORY_SIZE = 25 * 1024 * 1024      # 25MB (POST data)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 25 * 1024 * 1024      # 25MB (file buffering)
+
 
 
 
