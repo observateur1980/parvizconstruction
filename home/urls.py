@@ -12,7 +12,7 @@ urlpatterns = [
 
     # STATIC PAGES
     path("video/", views.Video.as_view(), name="video"),
-    path("gallery/", views.Gallery.as_view(), name="gallery"),
+
 
     path("new-construction/", views.Newconstruction.as_view(), name="newconstruction"),
     path("kitchen_remodeling/", views.KitchenRemodeling.as_view(), name="kitchen_remodeling"),

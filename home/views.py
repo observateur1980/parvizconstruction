@@ -56,8 +56,7 @@ class Video(TemplateView):
     template_name = 'home/video.html'
 
 
-class Gallery(TemplateView):
-    template_name = 'home/gallery.html'
+
 
 
 class Newconstruction(TemplateView):
