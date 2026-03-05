@@ -153,3 +153,11 @@ def create_lead_success(request):
 
 class CopyrightPage(TemplateView):
     template_name = "home/copyright.html"
+
+
+
+class Terms(TemplateView):
+    template_name = "home/terms.html"
+
+class Privacy(TemplateView):
+    template_name = "home/privacy.html"

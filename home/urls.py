@@ -29,4 +29,6 @@ urlpatterns = [
 
 
     path("copyright/", views.CopyrightPage.as_view(), name="copyright"),
+    path("terms/", views.Terms.as_view(), name="terms"),
+    path("privacy/", views.Privacy.as_view(), name="privacy"),
 ]
