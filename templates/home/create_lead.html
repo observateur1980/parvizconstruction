@@ -3,7 +3,59 @@
 {% block content %}
 
 <style>
+  .consent-box {
+    margin-top: 25px;
+  }
 
+  .consent-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+    border: 1px solid #d9e1ea;
+    border-radius: 10px;
+    background: #f8fbff;
+    line-height: 1.6;
+  }
+
+  .consent-checkbox input[type="checkbox"] {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: #0d182a;
+    flex: 0 0 auto;
+    cursor: pointer;
+  }
+
+  .consent-checkbox label {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  .consent-checkbox a {
+    color: #0d182a;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .consent-checkbox a:hover {
+    color: #1d3557;
+  }
+
+  @media (max-width: 767px) {
+    .consent-checkbox {
+      padding: 14px;
+      gap: 10px;
+    }
+
+    .consent-checkbox label {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  }
 </style>
 
 
@@ -98,6 +150,21 @@
 
   <div id="upload-progress-detail" style="font-size:12px; margin-top:6px; opacity:.75;"></div>
 </div>
+
+<div class="section-field consent-box">
+  <div class="field-widget">
+    <div class="consent-checkbox">
+      <input type="checkbox" id="sms_consent" name="option1" required>
+      <label for="sms_consent">
+        By checking this box, I consent to receive SMS messages from Parviz Construction related to customer care at the phone number provided above. Message frequency may vary. Data rates may apply. For assistance, reply HELP. Reply STOP to opt out. Please review our
+        <a href="https://parvizconstruction.com/privacy/" target="_blank">Privacy Policy</a>
+        and
+        <a href="https://parvizconstruction.com/terms/" target="_blank">Terms &amp; Conditions</a>.
+      </label>
+    </div>
+  </div>
+</div>
+
               <button type="submit" class="button mt-20" >
                 <span>REQUEST A CONSULTATION</span>
                 <i class="fa fa-check"></i>
